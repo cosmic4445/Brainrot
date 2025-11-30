@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sigma Skibidi Gyatt-inator 9000</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', sans-serif;
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #00fff7;
+            font-size: 3em;
+            text-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7; }
+            50% { text-shadow: 0 0 30px #00fff7, 0 0 60px #00fff7, 0 0 80px #00fff7; }
+        }
+
+        .brainrot-display {
+            width: 400px;
+            height: 400px;
+            margin: 30px auto;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .brainrot-cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 10s infinite linear;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 3px solid #ff00ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            background: rgba(255, 0, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+        }
+
+        .front  { transform: translateZ(100px); }
+        .back   { transform: rotateY(180deg) translateZ(100px); }
+        .right  { transform: rotateY(90deg) translateZ(100px); }
+        .left   { transform: rotateY(-90deg) translateZ(100px); }
+        .top    { transform: rotateX(90deg) translateZ(100px); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+        .controls {
+            margin-top: 40px;
+        }
+
+        button {
+            background: linear-gradient(45deg, #ff00ff, #00fff7);
+            border: none;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            text-transform: uppercase;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(255, 0, 255, 1);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .stats {
+            color: #00fff7;
+            font-size: 1.3em;
+            margin-top: 30px;
+            text-shadow: 0 0 10px #00fff7;
+        }
+
+        .particle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff00ff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particle-float 3s ease-out forwards;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .rizz-meter {
+            width: 300px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #00fff7;
+            border-radius: 20px;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .rizz-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff00ff, #00fff7);
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+        }
+
+        .text-display {
+            color: #ff00ff;
+            font-size: 2em;
+            margin-top: 20px;
+            text-shadow: 0 0 10px #ff00ff;
+            min-height: 60px;
+        }
+
+        .emoji-burst {
+            position: fixed;
+            font-size: 3em;
+            pointer-events: none;
+            animation: burst 1s ease-out forwards;
+        }
+
+        @keyframes burst {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 The Sigma Skibidi Gyatt-inator 9000 🧠</h1>
+        
+        <div class="brainrot-display">
+            <div class="brainrot-cube" id="cube">
+                <div class="cube-face front">🗿</div>
+                <div class="cube-face back">💀</div>
+                <div class="cube-face right">🧠</div>
+                <div class="cube-face left">😎</div>
+                <div class="cube-face top">🔥</div>
+                <div class="cube-face bottom">⚡</div>
+            </div>
+        </div>
+
+        <div class="text-display" id="textDisplay">Click to generate maximum brainrot</div>
+
+        <div class="rizz-meter">
+            <div class="rizz-fill" id="rizzMeter"></div>
+        </div>
+
+        <div class="controls">
+            <button onclick="generateBrainrot()">GENERATE BRAINROT</button>
+            <button onclick="maxRizz()">UNLOCK OHIO FORM</button>
+        </div>
+
+        <div class="stats" id="stats">
+            Brainrot Level: 0 | Rizz: 0% | Sigma Status: Inactive
+        </div>
+    </div>
+
+    <script>
+        let brainrotLevel = 0;
+        let rizzPercent = 0;
+        let sigmaActive = false;
+
+        const brainrotPhrases = [
+            "Only in Ohio 💀",
+            "Fr fr no cap 🧢",
+            "Skibidi toilet vibes",
+            "That's so sigma coded",
+            "Gyatt level: MAXIMUM",
+            "Rizz game unmatched",
+            "Livvy Dunne approved ✓",
+            "Mewing streak: 1000 days",
+            "Baby Gronk certified",
+            "Fanum tax incoming",
+            "Duke Dennis energy",
+            "Kai Cenat moment",
+            "Ice Spice rating: 10/10",
+            "Grimace shake survivor",
+            "NPC behavior detected",
+            "Main character energy",
+            "Touch grass? Never heard of her",
+            "Goon mode: ACTIVATED"
+        ];
+
+        const emojis = ['🗿', '💀', '🧠', '😎', '🔥', '⚡', '👑', '💯', '🚀', '⚔️'];
+
+        function generateBrainrot() {
+            brainrotLevel++;
+            rizzPercent = Math.min(100, rizzPercent + 5);
+            
+            const phrase = brainrotPhrases[Math.floor(Math.random() * brainrotPhrases.length)];
+            document.getElementById('textDisplay').textContent = phrase;
+            
+            document.getElementById('rizzMeter').style.width = rizzPercent + '%';
+            
+            updateStats();
+            createParticles(20);
+            shakeScreen();
+            
+            if (rizzPercent >= 100) {
+                sigmaActive = true;
+                document.getElementById('textDisplay').textContent = "🔱 ULTRA INSTINCT SIGMA UNLOCKED 🔱";
+            }
+        }
+
+        function maxRizz() {
+            brainrotLevel += 10;
+            rizzPercent = 100;
+            sigmaActive = true;
+            
+            document.getElementById('textDisplay').textContent = "⚡ OHIO FORM ACTIVATED ⚡";
+            document.getElementById('rizzMeter').style.width = '100%';
+            
+            updateStats();
+            createEmojiBurst();
+            
+            const cube = document.getElementById('cube');
+            cube.style.animation = 'rotateCube 2s infinite linear';
+        }
+
+        function updateStats() {
+            const sigmaStatus = sigmaActive ? "ULTRA SIGMA 👑" : rizzPercent >= 50 ? "Beta Sigma" : "Inactive";
+            document.getElementById('stats').textContent = 
+                `Brainrot Level: ${brainrotLevel} | Rizz: ${rizzPercent}% | Sigma Status: ${sigmaStatus}`;
+        }
+
+        function createParticles(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * window.innerWidth + 'px';
+                    particle.style.top = window.innerHeight / 2 + 'px';
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 3000);
+                }, i * 20);
+            }
+        }
+
+        function createEmojiBurst() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-burst';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = (window.innerWidth / 2 - 50 + Math.random() * 100) + 'px';
+                    emoji.style.top = (window.innerHeight / 2 - 50 + Math.random() * 100) + 'px';
+                    document.body.appendChild(emoji);
+                    
+                    setTimeout(() => emoji.remove(), 1000);
+                }, i * 50);
+            }
+        }
+
+        function shakeScreen() {
+            document.body.style.animation = 'shake 0.3s';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 300);
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
