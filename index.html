@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Sigma Skibidi Gyatt-inator 9000</title>
+    <title>The Sigma Skibidi Gyatt-inator 9000 | Please help me </title>
     <style>
         * {
             margin: 0;
@@ -14,22 +14,54 @@
         body {
             font-family: 'Arial Black', sans-serif;
             background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
-            overflow: hidden;
-            height: 100vh;
+            overflow-x: hidden;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            border-bottom: 3px solid #00fff7;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            color: #00fff7;
+            text-shadow: 0 0 10px #00fff7;
+        }
+
+        .menu-btn {
+            background: linear-gradient(45deg, #ff00ff, #00fff7);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 0 5px;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 1);
         }
 
         .container {
             text-align: center;
+            padding: 20px;
             position: relative;
-            z-index: 10;
         }
 
         h1 {
             color: #00fff7;
-            font-size: 3em;
+            font-size: 2.5em;
             text-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
             margin-bottom: 20px;
             animation: glow 2s ease-in-out infinite;
@@ -41,8 +73,8 @@
         }
 
         .brainrot-display {
-            width: 400px;
-            height: 400px;
+            width: 300px;
+            height: 300px;
             margin: 30px auto;
             position: relative;
             perspective: 1000px;
@@ -63,35 +95,35 @@
 
         .cube-face {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             border: 3px solid #ff00ff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4em;
+            font-size: 3em;
             background: rgba(255, 0, 255, 0.1);
             backdrop-filter: blur(10px);
             box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
         }
 
-        .front  { transform: translateZ(100px); }
-        .back   { transform: rotateY(180deg) translateZ(100px); }
-        .right  { transform: rotateY(90deg) translateZ(100px); }
-        .left   { transform: rotateY(-90deg) translateZ(100px); }
-        .top    { transform: rotateX(90deg) translateZ(100px); }
-        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+        .front  { transform: translateZ(75px); }
+        .back   { transform: rotateY(180deg) translateZ(75px); }
+        .right  { transform: rotateY(90deg) translateZ(75px); }
+        .left   { transform: rotateY(-90deg) translateZ(75px); }
+        .top    { transform: rotateX(90deg) translateZ(75px); }
+        .bottom { transform: rotateX(-90deg) translateZ(75px); }
 
         .controls {
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         button {
             background: linear-gradient(45deg, #ff00ff, #00fff7);
             border: none;
             color: white;
-            padding: 20px 40px;
-            font-size: 1.5em;
+            padding: 15px 30px;
+            font-size: 1.2em;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
@@ -112,9 +144,174 @@
 
         .stats {
             color: #00fff7;
-            font-size: 1.3em;
-            margin-top: 30px;
+            font-size: 1.1em;
+            margin-top: 20px;
             text-shadow: 0 0 10px #00fff7;
+        }
+
+        .rizz-meter {
+            width: 300px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #00fff7;
+            border-radius: 20px;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .rizz-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff00ff, #00fff7);
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+        }
+
+        .text-display {
+            color: #ff00ff;
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-shadow: 0 0 10px #ff00ff;
+            min-height: 50px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 30px;
+            border-radius: 20px;
+            border: 3px solid #00fff7;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 50px rgba(0, 255, 247, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 2em;
+            color: #00fff7;
+            text-shadow: 0 0 10px #00fff7;
+        }
+
+        .close-btn {
+            background: #ff0000;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .skin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skin-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #ff00ff;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .skin-card:hover {
+            transform: scale(1.05);
+            border-color: #00fff7;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
+        }
+
+        .skin-card.active {
+            border-color: #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.7);
+        }
+
+        .skin-emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .skin-name {
+            font-size: 0.9em;
+            color: #fff;
+        }
+
+        .skin-price {
+            color: #ffd700;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        .powerup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .powerup-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #ff00ff;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .powerup-card:hover {
+            transform: scale(1.05);
+            border-color: #00fff7;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
+        }
+
+        .powerup-card.active {
+            border-color: #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.7);
+        }
+
+        .currency {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .currency-amount {
+            color: #ffd700;
+            font-size: 1.3em;
+            text-shadow: 0 0 10px #ffd700;
         }
 
         .particle {
@@ -139,33 +336,6 @@
             }
         }
 
-        .rizz-meter {
-            width: 300px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid #00fff7;
-            border-radius: 20px;
-            margin: 20px auto;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .rizz-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff00ff, #00fff7);
-            width: 0%;
-            transition: width 0.5s ease;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
-        }
-
-        .text-display {
-            color: #ff00ff;
-            font-size: 2em;
-            margin-top: 20px;
-            text-shadow: 0 0 10px #ff00ff;
-            min-height: 60px;
-        }
-
         .emoji-burst {
             position: fixed;
             font-size: 3em;
@@ -183,20 +353,92 @@
                 opacity: 0;
             }
         }
+
+        .achievement {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff00ff, #00fff7);
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 2px solid #fff;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
+            animation: slideIn 0.5s ease, slideOut 0.5s ease 2.5s;
+            z-index: 2000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        .clonemace-credit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 15px;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .clonemace-credit a {
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .brainrot-display { width: 250px; height: 250px; }
+            .modal-content { padding: 20px; }
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="logo">🧠 GYATT-INATOR 9000</div>
+        <div>
+            <button class="menu-btn" onclick="openModal('skins')">SKINS</button>
+            <button class="menu-btn" onclick="openModal('powerups')">POWERUPS</button>
+            <button class="menu-btn" onclick="openModal('shop')">SHOP</button>
+        </div>
+    </div>
+
     <div class="container">
         <h1>🧠 The Sigma Skibidi Gyatt-inator 9000 🧠</h1>
         
+        <div class="currency">
+            <span>💰 Brainrot Coins: <span class="currency-amount" id="coins">0</span></span>
+        </div>
+
         <div class="brainrot-display">
             <div class="brainrot-cube" id="cube">
-                <div class="cube-face front">🗿</div>
-                <div class="cube-face back">💀</div>
-                <div class="cube-face right">🧠</div>
-                <div class="cube-face left">😎</div>
-                <div class="cube-face top">🔥</div>
-                <div class="cube-face bottom">⚡</div>
+                <div class="cube-face front" id="face1">🗿</div>
+                <div class="cube-face back" id="face2">💀</div>
+                <div class="cube-face right" id="face3">🧠</div>
+                <div class="cube-face left" id="face4">😎</div>
+                <div class="cube-face top" id="face5">🔥</div>
+                <div class="cube-face bottom" id="face6">⚡</div>
             </div>
         </div>
 
@@ -208,7 +450,7 @@
 
         <div class="controls">
             <button onclick="generateBrainrot()">GENERATE BRAINROT</button>
-            <button onclick="maxRizz()">UNLOCK OHIO FORM</button>
+            <button onclick="maxRizz()">OHIO FORM</button>
         </div>
 
         <div class="stats" id="stats">
@@ -216,10 +458,68 @@
         </div>
     </div>
 
+    <!-- Skins Modal -->
+    <div class="modal" id="skinsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🎨 BRAINROT SKINS</h2>
+                <button class="close-btn" onclick="closeModal('skins')">CLOSE</button>
+            </div>
+            <div class="skin-grid" id="skinGrid"></div>
+        </div>
+    </div>
+
+    <!-- Powerups Modal -->
+    <div class="modal" id="powerupsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">⚡ POWERUPS</h2>
+                <button class="close-btn" onclick="closeModal('powerups')">CLOSE</button>
+            </div>
+            <div class="powerup-grid" id="powerupGrid"></div>
+        </div>
+    </div>
+
+    <!-- Shop Modal -->
+    <div class="modal" id="shopModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🛒 BRAINROT SHOP</h2>
+                <button class="close-btn" onclick="closeModal('shop')">CLOSE</button>
+            </div>
+            <p style="margin-bottom: 20px;">Buy exclusive items with your Brainrot Coins!</p>
+            <div class="skin-grid" id="shopGrid"></div>
+        </div>
+    </div>
+
+    <div class="clonemace-credit">
+        Made for <a href="https://youtube.com/@clonemace" target="_blank">@clonemace</a> 🎮
+    </div>
+
     <script>
         let brainrotLevel = 0;
         let rizzPercent = 0;
         let sigmaActive = false;
+        let coins = 0;
+        let activePowerups = [];
+        let currentSkin = 'default';
+
+        const skins = {
+            default: { name: 'Default', emojis: ['🗿', '💀', '🧠', '😎', '🔥', '⚡'], price: 0, owned: true },
+            sigma: { name: 'Sigma', emojis: ['👑', '😎', '💪', '🦾', '⚔️', '🛡️'], price: 100, owned: false },
+            ohio: { name: 'Ohio', emojis: ['🌽', '🚜', '🏭', '🌪️', '👽', '🛸'], price: 150, owned: false },
+            meme: { name: 'Dank Memes', emojis: ['😂', '🤣', '💯', '🔥', '👌', '🎯'], price: 200, owned: false },
+            anime: { name: 'Anime', emojis: ['⚡', '🗡️', '🌸', '🎴', '🔮', '💫'], price: 250, owned: false },
+            cosmic: { name: 'Cosmic', emojis: ['🌌', '⭐', '🌙', '☄️', '🪐', '🌠'], price: 300, owned: false },
+            gamer: { name: 'Gamer', emojis: ['🎮', '🕹️', '👾', '🎯', '🏆', '💻'], price: 350, owned: false }
+        };
+
+        const powerups = {
+            doubleCoins: { name: '2x Coins', emoji: '💰', duration: 30000, active: false, price: 50 },
+            megaRizz: { name: 'Mega Rizz', emoji: '💪', duration: 20000, active: false, price: 75 },
+            speedBoost: { name: 'Speed Boost', emoji: '⚡', duration: 25000, active: false, price: 60 },
+            autoClick: { name: 'Auto Clicker', emoji: '🤖', duration: 15000, active: false, price: 100 }
+        };
 
         const brainrotPhrases = [
             "Only in Ohio 💀",
@@ -239,23 +539,32 @@
             "NPC behavior detected",
             "Main character energy",
             "Touch grass? Never heard of her",
-            "Goon mode: ACTIVATED"
+            "Goon mode: ACTIVATED",
+            "Clonemace viewer confirmed 🎮",
+            "Subscribe to Clonemace fr"
         ];
-
-        const emojis = ['🗿', '💀', '🧠', '😎', '🔥', '⚡', '👑', '💯', '🚀', '⚔️'];
 
         function generateBrainrot() {
             brainrotLevel++;
             rizzPercent = Math.min(100, rizzPercent + 5);
             
+            let coinGain = 10;
+            if (powerups.doubleCoins.active) coinGain *= 2;
+            coins += coinGain;
+            
             const phrase = brainrotPhrases[Math.floor(Math.random() * brainrotPhrases.length)];
             document.getElementById('textDisplay').textContent = phrase;
             
             document.getElementById('rizzMeter').style.width = rizzPercent + '%';
+            document.getElementById('coins').textContent = coins;
             
             updateStats();
             createParticles(20);
             shakeScreen();
+            
+            if (brainrotLevel === 10) showAchievement("First Steps! 🎯");
+            if (brainrotLevel === 50) showAchievement("Brainrot Addict! 🧠");
+            if (brainrotLevel === 100) showAchievement("Sigma Grindset! 💪");
             
             if (rizzPercent >= 100) {
                 sigmaActive = true;
@@ -267,9 +576,11 @@
             brainrotLevel += 10;
             rizzPercent = 100;
             sigmaActive = true;
+            coins += 50;
             
             document.getElementById('textDisplay').textContent = "⚡ OHIO FORM ACTIVATED ⚡";
             document.getElementById('rizzMeter').style.width = '100%';
+            document.getElementById('coins').textContent = coins;
             
             updateStats();
             createEmojiBurst();
@@ -282,6 +593,147 @@
             const sigmaStatus = sigmaActive ? "ULTRA SIGMA 👑" : rizzPercent >= 50 ? "Beta Sigma" : "Inactive";
             document.getElementById('stats').textContent = 
                 `Brainrot Level: ${brainrotLevel} | Rizz: ${rizzPercent}% | Sigma Status: ${sigmaStatus}`;
+        }
+
+        function openModal(type) {
+            if (type === 'skins') {
+                document.getElementById('skinsModal').classList.add('active');
+                loadSkins();
+            } else if (type === 'powerups') {
+                document.getElementById('powerupsModal').classList.add('active');
+                loadPowerups();
+            } else if (type === 'shop') {
+                document.getElementById('shopModal').classList.add('active');
+                loadShop();
+            }
+        }
+
+        function closeModal(type) {
+            if (type === 'skins') {
+                document.getElementById('skinsModal').classList.remove('active');
+            } else if (type === 'powerups') {
+                document.getElementById('powerupsModal').classList.remove('active');
+            } else if (type === 'shop') {
+                document.getElementById('shopModal').classList.remove('active');
+            }
+        }
+
+        function loadSkins() {
+            const grid = document.getElementById('skinGrid');
+            grid.innerHTML = '';
+            
+            for (let [id, skin] of Object.entries(skins)) {
+                if (skin.owned) {
+                    const card = document.createElement('div');
+                    card.className = 'skin-card' + (currentSkin === id ? ' active' : '');
+                    card.innerHTML = `
+                        <div class="skin-emoji">${skin.emojis[0]}</div>
+                        <div class="skin-name">${skin.name}</div>
+                    `;
+                    card.onclick = () => selectSkin(id);
+                    grid.appendChild(card);
+                }
+            }
+        }
+
+        function selectSkin(skinId) {
+            currentSkin = skinId;
+            const faces = ['face1', 'face2', 'face3', 'face4', 'face5', 'face6'];
+            faces.forEach((face, i) => {
+                document.getElementById(face).textContent = skins[skinId].emojis[i];
+            });
+            loadSkins();
+            showAchievement(`${skins[skinId].name} skin equipped! ✨`);
+        }
+
+        function loadPowerups() {
+            const grid = document.getElementById('powerupGrid');
+            grid.innerHTML = '';
+            
+            for (let [id, powerup] of Object.entries(powerups)) {
+                const card = document.createElement('div');
+                card.className = 'powerup-card' + (powerup.active ? ' active' : '');
+                card.innerHTML = `
+                    <div class="skin-emoji">${powerup.emoji}</div>
+                    <div class="skin-name">${powerup.name}</div>
+                    <div class="skin-price">${powerup.price} coins</div>
+                    <button onclick="buyPowerup('${id}')" style="margin-top: 10px; padding: 8px 16px; font-size: 0.9em;">
+                        ${powerup.active ? 'ACTIVE' : 'ACTIVATE'}
+                    </button>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        function buyPowerup(powerupId) {
+            const powerup = powerups[powerupId];
+            if (coins >= powerup.price && !powerup.active) {
+                coins -= powerup.price;
+                powerup.active = true;
+                document.getElementById('coins').textContent = coins;
+                
+                showAchievement(`${powerup.name} activated! ${powerup.emoji}`);
+                
+                setTimeout(() => {
+                    powerup.active = false;
+                    showAchievement(`${powerup.name} expired!`);
+                }, powerup.duration);
+                
+                loadPowerups();
+                
+                if (powerupId === 'autoClick') {
+                    const interval = setInterval(() => {
+                        if (!powerup.active) {
+                            clearInterval(interval);
+                            return;
+                        }
+                        generateBrainrot();
+                    }, 1000);
+                }
+            }
+        }
+
+        function loadShop() {
+            const grid = document.getElementById('shopGrid');
+            grid.innerHTML = '';
+            
+            for (let [id, skin] of Object.entries(skins)) {
+                if (!skin.owned && skin.price > 0) {
+                    const card = document.createElement('div');
+                    card.className = 'skin-card';
+                    card.innerHTML = `
+                        <div class="skin-emoji">${skin.emojis[0]}</div>
+                        <div class="skin-name">${skin.name}</div>
+                        <div class="skin-price">${skin.price} coins</div>
+                        <button onclick="buySkin('${id}')" style="margin-top: 10px; padding: 8px 16px; font-size: 0.9em;">
+                            BUY
+                        </button>
+                    `;
+                    grid.appendChild(card);
+                }
+            }
+        }
+
+        function buySkin(skinId) {
+            const skin = skins[skinId];
+            if (coins >= skin.price) {
+                coins -= skin.price;
+                skin.owned = true;
+                document.getElementById('coins').textContent = coins;
+                showAchievement(`${skin.name} skin unlocked! 🎉`);
+                loadShop();
+            } else {
+                showAchievement('Not enough coins! 💰');
+            }
+        }
+
+        function showAchievement(text) {
+            const achievement = document.createElement('div');
+            achievement.className = 'achievement';
+            achievement.textContent = '🏆 ' + text;
+            document.body.appendChild(achievement);
+            
+            setTimeout(() => achievement.remove(), 3000);
         }
 
         function createParticles(count) {
@@ -299,6 +751,7 @@
         }
 
         function createEmojiBurst() {
+            const emojis = skins[currentSkin].emojis;
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
                     const emoji = document.createElement('div');
@@ -329,6 +782,11 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Welcome message
+        setTimeout(() => {
+            showAchievement('Welcome to Gyatt-inator 9000! 🧠');
+        }, 500);
     </script>
 </body>
 </html>
